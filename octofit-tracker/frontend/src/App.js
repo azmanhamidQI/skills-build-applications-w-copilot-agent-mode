@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Activities from './Activities';
-import Leaderboard from './Leaderboard';
-import Teams from './Teams';
-import Users from './Users';
-import Workouts from './Workouts';
+import Activities from './components/Activities';
+import Leaderboard from './components/Leaderboard';
+import Teams from './components/Teams';
+import Users from './components/Users';
+import Workouts from './components/Workouts';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import octofitLogo from '../docs/octofitapp-small.png';
