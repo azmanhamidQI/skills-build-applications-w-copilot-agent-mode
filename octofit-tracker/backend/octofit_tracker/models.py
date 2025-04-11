@@ -1,32 +1,43 @@
 from djongo import models
+from djongo.models.fields import ObjectIdField
 
 class User(models.Model):
-    id = models.ObjectIdField(primary_key=True)
+    id = ObjectIdField(primary_key=True)  # Use ObjectIdField for MongoDB compatibility
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=255)
-    created_at = models.DateTimeField(auto_now_add=True)
+    age = models.IntegerField()
+    gender = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.name
 
 class Team(models.Model):
-    id = models.ObjectIdField(primary_key=True)
     name = models.CharField(max_length=255)
-    members = models.ArrayReferenceField(to=User, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
+    members = models.ArrayField(model_container=User)
+
+    def __str__(self):
+        return self.name
 
 class Activity(models.Model):
-    id = models.ObjectIdField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    activity_type = models.CharField(max_length=255)
+    type = models.CharField(max_length=255)
     duration = models.IntegerField()  # in minutes
-    created_at = models.DateTimeField(auto_now_add=True)
+    calories_burned = models.FloatField()
+
+    def __str__(self):
+        return f"{self.type} by {self.user.name}"
 
 class Leaderboard(models.Model):
-    id = models.ObjectIdField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     score = models.IntegerField()
-    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.name}: {self.score}"
 
 class Workout(models.Model):
-    id = models.ObjectIdField(primary_key=True)
     name = models.CharField(max_length=255)
     description = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    duration = models.IntegerField()  # in minutes
+
+    def __str__(self):
+        return self.name
