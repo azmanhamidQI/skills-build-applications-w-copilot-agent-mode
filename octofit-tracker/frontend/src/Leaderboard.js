@@ -4,7 +4,7 @@ function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
 
   useEffect(() => {
-    fetch('/api/leaderboard/') // Added trailing slash for Django REST API endpoint
+    fetch('-8000.app.github.dev/api/leaderboard/') // Added trailing slash for Django REST API endpoint
       .then(response => response.json())
       .then(data => setLeaderboard(data))
       .catch(error => console.error('Error fetching leaderboard:', error));

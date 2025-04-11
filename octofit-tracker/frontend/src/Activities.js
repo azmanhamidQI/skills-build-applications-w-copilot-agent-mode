@@ -4,7 +4,7 @@ function Activities() {
   const [activities, setActivities] = useState([]);
 
   useEffect(() => {
-    fetch('/api/activities/') // Added trailing slash for Django REST API endpoint
+    fetch('-8000.app.github.dev/api/activities/') // Added trailing slash for Django REST API endpoint
       .then(response => response.json())
       .then(data => setActivities(data))
       .catch(error => console.error('Error fetching activities:', error));

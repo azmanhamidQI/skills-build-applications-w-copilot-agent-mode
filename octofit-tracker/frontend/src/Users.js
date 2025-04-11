@@ -4,7 +4,7 @@ function Users() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch('/api/users/') // Added trailing slash for Django REST API endpoint
+    fetch('-8000.app.github.dev/api/users/') // Added trailing slash for Django REST API endpoint
       .then(response => response.json())
       .then(data => setUsers(data))
       .catch(error => console.error('Error fetching users:', error));
