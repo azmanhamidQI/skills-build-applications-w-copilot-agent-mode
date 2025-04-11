@@ -1,26 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Workouts() {
+  const [workouts, setWorkouts] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/workouts')
+      .then(response => response.json())
+      .then(data => setWorkouts(data))
+      .catch(error => console.error('Error fetching workouts:', error));
+  }, []);
+
   return (
     <div className="card">
+      <div className="card-header">
+        <h2 className="card-title">Workouts</h2>
+      </div>
       <div className="card-body">
-        <h1 className="card-title">Workouts</h1>
         <table className="table table-striped">
           <thead>
             <tr>
-              <th>Workout</th>
+              <th>Name</th>
               <th>Description</th>
+              <th>Duration</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Running</td>
-              <td>Cardio exercise</td>
-            </tr>
-            <tr>
-              <td>Swimming</td>
-              <td>Full-body workout</td>
-            </tr>
+            {workouts.map(workout => (
+              <tr key={workout.id}>
+                <td>{workout.name}</td>
+                <td>{workout.description}</td>
+                <td>{workout.duration}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

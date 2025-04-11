@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Users() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/users')
+      .then(response => response.json())
+      .then(data => setUsers(data))
+      .catch(error => console.error('Error fetching users:', error));
+  }, []);
+
   return (
     <div className="card">
+      <div className="card-header">
+        <h2 className="card-title">Users</h2>
+      </div>
       <div className="card-body">
-        <h1 className="card-title">Users</h1>
         <table className="table table-striped">
           <thead>
             <tr>
@@ -13,14 +24,12 @@ function Users() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>JohnDoe</td>
-              <td>john@example.com</td>
-            </tr>
-            <tr>
-              <td>JaneSmith</td>
-              <td>jane@example.com</td>
-            </tr>
+            {users.map(user => (
+              <tr key={user.id}>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

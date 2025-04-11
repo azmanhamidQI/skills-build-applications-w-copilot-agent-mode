@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Teams() {
+  const [teams, setTeams] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/teams')
+      .then(response => response.json())
+      .then(data => setTeams(data))
+      .catch(error => console.error('Error fetching teams:', error));
+  }, []);
+
   return (
     <div className="card">
+      <div className="card-header">
+        <h2 className="card-title">Teams</h2>
+      </div>
       <div className="card-body">
-        <h1 className="card-title">Teams</h1>
         <table className="table table-striped">
           <thead>
             <tr>
@@ -13,14 +24,12 @@ function Teams() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Team Alpha</td>
-              <td>John, Jane</td>
-            </tr>
-            <tr>
-              <td>Team Beta</td>
-              <td>Mike, Sarah</td>
-            </tr>
+            {teams.map(team => (
+              <tr key={team.id}>
+                <td>{team.name}</td>
+                <td>{team.members.join(', ')}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

@@ -1,36 +1,41 @@
+/* Updated styles for OctoFit Tracker */
 body {
   background-color: #f0f8ff; /* Light blue background */
-  color: #333; /* Dark text color for readability */
-  font-family: Arial, sans-serif;
+  color: #212121; /* Darker text color for better contrast */
+  font-family: 'Roboto', sans-serif;
 }
 
 .navbar {
-  background-color: #4caf50; /* Green navigation menu */
+  background-color: #4682b4; /* Steel blue navigation menu */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-brand, .nav-link {
-  color: white !important; /* White text for links */
+  color: #ffffff !important; /* White text for links */
+  font-weight: bold;
 }
 
 .nav-link:hover {
-  color: #ffeb3b !important; /* Yellow on hover */
+  color: #ffcc80 !important; /* Orange on hover */
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #4caf50; /* Green headings */
+  color: #1e88e5; /* Blue headings */
+  font-family: 'Roboto', sans-serif;
 }
 
 button {
-  background-color: #4caf50; /* Green buttons */
+  background-color: #1e88e5; /* Blue buttons */
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #45a049; /* Darker green on hover */
+  background-color: #1565c0; /* Darker blue on hover */
 }
 
 table {
@@ -39,6 +44,10 @@ table {
   margin: 20px 0;
   font-size: 18px;
   text-align: left;
+  background-color: #ffffff; /* White background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 table th, table td {
@@ -47,8 +56,16 @@ table th, table td {
 }
 
 table th {
-  background-color: #4caf50;
+  background-color: #4682b4; /* Steel blue table headers */
   color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: #f0f8ff; /* Light blue */
+}
+
+table tr:hover {
+  background-color: #e0ffff; /* Light cyan */
 }
 
 .App {
@@ -56,9 +73,9 @@ table th {
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  height: 50px;
   margin-right: auto; /* Align logo to the left */
+  display: inline-block;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -85,6 +102,7 @@ table th {
 .favicon {
   width: 32px;
   height: 32px;
+  display: inline-block;
 }
 
 @keyframes App-logo-spin {
